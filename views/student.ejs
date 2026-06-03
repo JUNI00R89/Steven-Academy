@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Estudiante</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="topbar">
+<h1 class="brand">Bienvenido <%= user.nombre %></h1>
+<a href="/logout" class="btn">Salir</a>
+</div>
+
+<% notas.forEach(n => { %>
+<div class="note">
+<strong><%= n.materia %></strong><br>
+Nota: <%= n.nota %><br>
+Observación: <%= n.observacion %>
+</div>
+<% }) %>
+
+</div>
+</div>
+</body>
+</html>
