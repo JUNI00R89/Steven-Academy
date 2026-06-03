@@ -2,9 +2,10 @@
 
 Sistema de Gestión Académica Web desarrollado para instituciones educativas.
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white)
 
 ## 📋 Descripción
 
@@ -16,25 +17,25 @@ Este proyecto fue desarrollado como **Producto Integrador** para el curso de **S
 
 ## ✨ Características Principales
 
-- Autenticación segura con JWT
-- Gestión de usuarios por roles (Administrador, Docente, Estudiante)
+- Gestión completa de usuarios y roles (Administrador, Docente, Estudiante)
 - Registro y consulta de notas académicas
-- Registro de observaciones disciplinarias
-- Control de acceso basado en roles (RBAC)
-- Protección contra ataques comunes (SQL Injection, XSS, Fuerza Bruta)
-- Soporte completo con **Docker** y **Docker Compose**
-- Cumple con buenas prácticas de seguridad
+- Control de observaciones disciplinarias
+- Autenticación y autorización segura
+- Protección contra vulnerabilidades comunes
+- Despliegue fácil mediante Docker
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **Backend:** Node.js + Express
+- **Backend:** PHP 8.2 (principal)
 - **Base de Datos:** MySQL 8.0
-- **Frontend:** HTML, CSS, JavaScript (EJS)
-- **Autenticación:** JWT + bcrypt
+- **Servidor Web:** Apache
+- **Frontend:** HTML, CSS, JavaScript
+- **Autenticación:** PHP Sessions + `password_hash()`
 - **Contenerización:** Docker + Docker Compose
-- **Seguridad:** Helmet, Rate Limiting, Validación de datos
+
+*(Nota: Algunas funcionalidades adicionales pueden estar soportadas con Node.js en módulos específicos)*
 
 ---
 
@@ -43,30 +44,23 @@ Este proyecto fue desarrollado como **Producto Integrador** para el curso de **S
 ### Opción Recomendada: Docker
 
 ```bash
-# Clonar el repositorio
+# 1. Clonar el repositorio
 git clone https://github.com/tuusuario/steven-academy.git
 cd steven-academy
 
-# Levantar los contenedores
+# 2. Copiar archivo de entorno
+cp .env.example .env
+
+# 3. Levantar los contenedores
 docker-compose up -d --build
-La aplicación estará disponible en: http://localhost:3000
+La aplicación estará disponible en: http://localhost:8080
 
 Opción Manual (sin Docker)
-Instalar Node.js y MySQL
-Crear la base de datos steven_academy
-Copiar .env.example a .env y configurar las variables
-Instalar dependencias:
-Bash
-
-
-Copy
-npm install
-Iniciar el servidor:
-Bash
-
-
-Copy
-npm start
+Instalar PHP 8.2+, Apache y MySQL (recomendado XAMPP o WAMP).
+Crear la base de datos steven_academy.
+Configurar el archivo .env.
+Colocar el proyecto en la carpeta del servidor web.
+Acceder mediante el navegador.
 📁 Estructura del Proyecto
 text
 
@@ -75,37 +69,37 @@ Copy
 steven-academy/
 ├── src/
 │   ├── controllers/
-│   ├── routes/
-│   ├── middleware/     # auth, validation, security
-│   ├── config/
-│   └── utils/
-├── public/             # Archivos estáticos
-├── views/              # Plantillas EJS
+│   ├── models/
+│   ├── views/
+│   └── config/
+├── public/             # CSS, JS, imágenes
+├── docker/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .env.example
 ├── .dockerignore
 └── README.md
 🔐 Seguridad
-Este proyecto implementa múltiples capas de seguridad:
+Este proyecto implementa buenas prácticas de seguridad:
 
-Contraseñas cifradas con bcrypt
-Tokens JWT con expiración corta
-Rate limiting
-Validación y sanitización de entradas
-Principio de mínimo privilegio
+Contraseñas cifradas con password_hash()
+Uso de Prepared Statements contra SQL Injection
+Control de acceso por roles (RBAC)
+Variables de entorno protegidas
 Política de contraseñas robusta
+Principio de mínimo privilegio
 📋 Variables de Entorno
-Copia el archivo .env.example a .env y configura:
+Copia .env.example a .env y configura:
 
 DB_HOST, DB_USER, DB_PASSWORD
-JWT_SECRET (¡cámbialo por una clave fuerte!)
-NODE_ENV=production
-🧪 Ambientes
-Desarrollo: NODE_ENV=development
-Producción: NODE_ENV=production
-👨‍💻 Autor
+APP_ENV=production
+Claves de sesión y seguridad
+👨‍💻 Autores
+Hector Steven Cuesta
 Frank Junior Benítez Mosquera
-Proyecto SENA - Seguridad Informática
+Proyecto desarrollado para el Servicio Nacional de Aprendizaje (SENA)
+Curso: Seguridad Informática
+
 📄 Licencia
 Este proyecto es para fines educativos.
+
